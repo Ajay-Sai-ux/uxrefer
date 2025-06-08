@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    padding: 24px 16px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav a {
+    line-height: 100%;
+    color: #000;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+@media (min-width: 770px) {
+.header {
+    padding: 24px 32px;
+}
+}

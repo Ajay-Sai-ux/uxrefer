@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///Users/mac/Documents/uxrefer/frontend/src/styles/globals.css"],"sourcesContent":["* {\n  text-decoration: none;\n}\n\nbody {\n  padding: 0;\n  margin: 0;\n}"],"names":[],"mappings":"AAAA;;;;AAIA","debugId":null}}]
+}

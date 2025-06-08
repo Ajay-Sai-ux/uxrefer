@@ -1,0 +1,41 @@
+/* [project]/src/app/page.module.css [app-client] (css) */
+.page-module___8aEwW__page {
+  margin: 0;
+  padding: 0;
+}
+
+.page-module___8aEwW__main {
+  flex-direction: column;
+  grid-row-start: 2;
+  gap: 32px;
+  display: flex;
+}
+
+.page-module___8aEwW__website {
+  grid-template-columns: 1fr;
+  gap: 32px 24px;
+  display: grid;
+}
+
+@media (width >= 770px) {
+  .page-module___8aEwW__website {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 32px;
+  }
+}
+
+@media (width >= 1280px) {
+  .page-module___8aEwW__website {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 32px;
+  }
+}
+
+@media (width >= 1990px) {
+  .page-module___8aEwW__website {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 32px;
+  }
+}
+
+/*# sourceMappingURL=src_app_page_module_css_f9ee138c._.single.css.map*/

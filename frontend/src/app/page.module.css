@@ -1,0 +1,39 @@
+.page {
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  grid-row-start: 2;
+}
+
+.website {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile default */
+  column-gap: 24px;
+  row-gap: 32px;
+}
+
+@media (min-width: 770px) {
+  .website {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .website {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1990px) {
+  .website {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 32px;
+  }
+}
