@@ -3,6 +3,9 @@ import "@/styles/globals.css";
 export const metadata = {
   title: "uxRefer",
   description: "A curated collection of UX patterns and live design references.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
