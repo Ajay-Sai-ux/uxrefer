@@ -1,0 +1,173 @@
+/* [project]/src/components/Card/Card.module.css [app-client] (css) */
+.Card-module__ckVvha__card {
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 0;
+  display: flex;
+}
+
+@media (width >= 770px) {
+  .Card-module__ckVvha__card {
+    border: 1px solid #ededed;
+    padding: 12px;
+  }
+}
+
+.Card-module__ckVvha__imageWrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.Card-module__ckVvha__image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.Card-module__ckVvha__content {
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  display: flex;
+}
+
+@media (width >= 770px) {
+  .Card-module__ckVvha__content {
+    align-items: center;
+    gap: 12px;
+    display: flex;
+  }
+}
+
+.Card-module__ckVvha__content p {
+  color: #000;
+  margin: 0;
+  font-family: Work Sans, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.Card-module__ckVvha__arrow {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* [project]/src/app/page.module.css [app-client] (css) */
+.page-module___8aEwW__page {
+  margin: 0;
+  padding: 0;
+}
+
+.page-module___8aEwW__main {
+  flex-direction: column;
+  grid-row-start: 2;
+  gap: 32px;
+  display: flex;
+}
+
+.page-module___8aEwW__website {
+  grid-template-columns: 1fr;
+  gap: 32px 24px;
+  display: grid;
+}
+
+@media (width >= 770px) {
+  .page-module___8aEwW__website {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 32px;
+  }
+}
+
+@media (width >= 1280px) {
+  .page-module___8aEwW__website {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 32px;
+  }
+}
+
+@media (width >= 1990px) {
+  .page-module___8aEwW__website {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 32px;
+  }
+}
+
+
+/* [project]/src/components/Header/Header.module.css [app-client] (css) */
+.Header-module__ldgnoG__header {
+  justify-content: space-between;
+  align-self: stretch;
+  align-items: center;
+  padding: 24px 16px;
+  display: flex;
+}
+
+.Header-module__ldgnoG__nav {
+  align-items: center;
+  gap: 40px;
+  display: flex;
+}
+
+.Header-module__ldgnoG__nav a {
+  color: #000;
+  font-family: Work Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+@media (width >= 770px) {
+  .Header-module__ldgnoG__header {
+    padding: 24px 32px;
+  }
+}
+
+
+/* [project]/src/components/Dropdown/Dropdown.module.css [app-client] (css) */
+.Dropdown-module__R3eBGG__dropdown {
+  width: 240px;
+  display: inline-block;
+  position: relative;
+}
+
+.Dropdown-module__R3eBGG__button {
+  text-align: left;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  padding: 10px 12px;
+  box-shadow: 0 1px 3px #0000001a;
+}
+
+.Dropdown-module__R3eBGG__arrow {
+  float: right;
+}
+
+.Dropdown-module__R3eBGG__menu {
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 4px;
+  position: absolute;
+  box-shadow: 0 2px 6px #00000026;
+}
+
+.Dropdown-module__R3eBGG__option {
+  cursor: pointer;
+  padding: 10px 12px;
+}
+
+.Dropdown-module__R3eBGG__option:hover {
+  background-color: #f2f2f2;
+}
+
+
+/*# sourceMappingURL=src_532ace01._.css.map*/
