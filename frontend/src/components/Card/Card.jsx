@@ -1,7 +1,7 @@
 import styles from "./Card.module.css";
-import Image from "next/image";
 
-const Card = ({ src, title, url }) => {
+
+const Card = ({ title, url }) => {
   return (
     <a
       href={url}
@@ -11,7 +11,11 @@ const Card = ({ src, title, url }) => {
     >
       <div className={styles.card}>
         <div className={styles.imageWrapper}>
-          <img className={styles.image} src={`https://s.wordpress.com/mshots/v1/${url}?w=1800`} alt={title} />
+          <img
+            className={styles.image}
+            src={`https://s.wordpress.com/mshots/v1/${url}?w=1800`}
+            alt={title}
+          />
         </div>
         <div className={styles.content}>
           <p>{title}</p>
