@@ -1,10 +1,10 @@
 import styles from "./Card.module.css";
 
 
-const Card = ({ title, url }) => {
+const Card = ({ src, title, url }) => {
   return (
     <a
-      href={url}
+      href={`${url}?ref=uxRefer.com`}
       target="_blank"
       rel="noopener noreferrer"
       className={styles.cardLink} // optional, to style the anchor tag
@@ -13,7 +13,7 @@ const Card = ({ title, url }) => {
         <div className={styles.imageWrapper}>
           <img
             className={styles.image}
-            src={`https://s.wordpress.com/mshots/v1/${url}?w=1800`}
+            src={src}
             alt={title}
           />
         </div>
