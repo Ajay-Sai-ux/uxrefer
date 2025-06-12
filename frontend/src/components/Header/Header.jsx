@@ -9,12 +9,14 @@ const Header = () => {
         className={styles.title}
         src="/uxrLogo.svg"
         alt="UxRefer Logo"
-        width={66}
-        height={24}
+        width={142}
+        height={20}
       />
       <nav className={styles.nav}>
-        <Link href="#">About</Link>
-        <Link href="#">Donate</Link>
+        <Link href="#">Pages</Link>
+        <Link href="#">Landing pages</Link>
+        <Link href="#">OG Images</Link>
+        <Link href="#">Sections</Link>
       </nav>
     </header>
   );

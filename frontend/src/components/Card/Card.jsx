@@ -5,12 +5,49 @@ import styles from "./Card.module.css";
 const Card = ({ src, title, url }) => {
   return (
     <a
-      href={`${url}?ref=uxRefer.com`}
+      href={`${url}${url.includes("?") ? "&" : "?"}ref=uxRefer.com`}
       target="_blank"
       rel="noopener noreferrer"
       className={styles.cardLink}
     >
       <div className={styles.card}>
+        <div className={styles.content}>
+          <div className={styles.macButton}>
+            <Image
+              className={styles.logo}
+              src="/mac-buttons.svg"
+              alt="mac-buttons"
+              width={10}
+              height={10}
+            />
+            <Image
+              className={styles.logo}
+              src="/mac-buttons.svg"
+              alt="mac-buttons"
+              width={10}
+              height={10}
+            />
+            <Image
+              className={styles.logo}
+              src="/mac-buttons.svg"
+              alt="mac-buttons"
+              width={10}
+              height={10}
+            />
+          </div>
+
+          <div className={styles.cardTitle}>
+            <p>{url}</p>
+          </div>
+
+          <Image
+            className={styles.arrow}
+            src="/arrow_insert.svg"
+            alt="Arrow"
+            width={24}
+            height={24}
+          />
+        </div>
         <div className={styles.imageWrapper}>
           <Image
             className={styles.image}
@@ -21,16 +58,6 @@ const Card = ({ src, title, url }) => {
             layout="responsive" // Makes it scale correctly
             objectFit="cover" // Similar to CSS object-fit
             loading="lazy" // Lazy load images
-          />
-        </div>
-        <div className={styles.content}>
-          <p>{title}</p>
-          <Image
-            className={styles.arrow}
-            src="/rightarrow.svg"
-            alt="Arrow"
-            width={16}
-            height={16}
           />
         </div>
       </div>
