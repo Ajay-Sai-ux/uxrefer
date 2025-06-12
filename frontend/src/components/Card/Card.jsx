@@ -5,7 +5,7 @@ import styles from "./Card.module.css";
 const Card = ({ src, url }) => {
   return (
     <a
-      href={`${url}${url.includes("?") ? "&" : "?"}ref=uxRefer.com`}
+      href={`https://${url}${url.includes("?") ? "&" : "?"}ref=uxRefer.com`}
       target="_blank"
       rel="noopener noreferrer"
       className={styles.cardLink}

@@ -29,17 +29,33 @@
 
 .Dropdown-module__R3eBGG__menu {
   z-index: 10;
+  scrollbar-width: none;
   background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #eaeaea;
+  border-radius: 24px;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
-  margin-top: 4px;
+  height: 400px;
+  display: flex;
   position: absolute;
+  overflow: scroll;
 }
 
 .Dropdown-module__R3eBGG__option {
   cursor: pointer;
-  padding: 10px 12px;
+  color: #000;
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+  align-self: stretch;
+  align-items: center;
+  padding: 16px 24px;
+  font-family: Work Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  display: flex;
 }
 
 .Dropdown-module__R3eBGG__option:hover {

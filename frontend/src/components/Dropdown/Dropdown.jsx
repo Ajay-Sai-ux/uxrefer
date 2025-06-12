@@ -1,11 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./Dropdown.module.css";
 import Image from "next/image";
 
 const Dropdown = ({ label = "Select", options = [], onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(null);
+  const dropdownRef = useRef(null); // ⬅️ for outside click detection
+
+  // Detect click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleSelect = (option) => {
     setSelected(option);
@@ -14,18 +29,16 @@ const Dropdown = ({ label = "Select", options = [], onSelect }) => {
   };
 
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} ref={dropdownRef}>
       <button onClick={() => setIsOpen(!isOpen)} className={styles.button}>
         {selected ? selected.label : label}
-
         <Image
-        src="/chevron_down.svg"
-        alt="Dropdown Arrow"
-        width={24}
-        height={24}
-        className={styles.arrow}
+          src="/chevron_down.svg"
+          alt="Dropdown Arrow"
+          width={24}
+          height={24}
+          className={styles.arrow}
         />
-
       </button>
 
       {isOpen && (
