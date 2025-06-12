@@ -13,8 +13,8 @@
 .website {
   display: grid;
   grid-template-columns: 1fr; /* mobile default */
+  row-gap: 40px;
   column-gap: 24px;
-  row-gap: 32px;
 }
 
 @media (min-width: 770px) {

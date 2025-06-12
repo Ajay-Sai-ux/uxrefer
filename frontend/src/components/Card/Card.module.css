@@ -7,7 +7,7 @@
     grid-row: 1 / span 1;
     grid-column: 1 / span 1;
 
-    border-radius: 24px;
+    border-radius: 16px;
     border: 1px solid #EAEAEA;
     background: #FFF;
     overflow: hidden;
@@ -52,7 +52,7 @@
     flex: 1 0 0;
 
     border-radius: 12px;
-    border: 1px solid #E8E8E8;
+    /* border: 1px solid #E8E8E8; */
     background: #F8F8F8;
 }
 
