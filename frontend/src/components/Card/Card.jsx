@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "./Card.module.css";
 
-const Card = ({ src, title, url }) => {
+const Card = ({ src, url }) => {
   return (
     <a
       href={`${url}${url.includes("?") ? "&" : "?"}ref=uxRefer.com`}
@@ -52,7 +52,7 @@ const Card = ({ src, title, url }) => {
           <Image
             className={styles.image}
             src={src}
-            alt={title}
+            alt={url}
             width={400} // Set actual image width
             height={250} // Set actual image height
             layout="responsive" // Makes it scale correctly

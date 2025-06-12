@@ -11,6 +11,23 @@
   display: flex;
 }
 
+.page-module___8aEwW__filters {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 24px;
+  align-self: stretch;
+  align-items: center;
+  height: 100%;
+  margin: 0 32px;
+  display: flex;
+}
+
+.page-module___8aEwW__line {
+  background: #eaeaea;
+  width: 3px;
+  height: 40px;
+}
+
 .page-module___8aEwW__website {
   grid-template-columns: 1fr;
   gap: 40px 24px;

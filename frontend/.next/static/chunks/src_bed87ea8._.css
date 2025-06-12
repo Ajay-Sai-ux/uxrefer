@@ -1,16 +1,15 @@
 /* [project]/src/components/Card/Card.module.css [app-client] (css) */
 .Card-module__ckVvha__card {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
   flex-direction: column;
-  gap: 12px;
-  padding: 12px 0;
+  flex: 1 0 0;
+  grid-area: 1 / 1 / span 1 / span 1;
+  align-self: stretch;
+  align-items: flex-start;
   display: flex;
-}
-
-@media (width >= 770px) {
-  .Card-module__ckVvha__card {
-    border: 1px solid #ededed;
-    padding: 12px;
-  }
+  overflow: hidden;
 }
 
 .Card-module__ckVvha__imageWrapper {
@@ -25,10 +24,28 @@
   display: block;
 }
 
+.Card-module__ckVvha__macButton {
+  gap: 8px;
+  display: flex;
+}
+
 .Card-module__ckVvha__content {
+  border-bottom: 1px solid #e8e8e8;
+  align-self: stretch;
   align-items: center;
   gap: 12px;
-  padding: 0 16px;
+  padding: 12px;
+  display: flex;
+}
+
+.Card-module__ckVvha__cardTitle {
+  background: #f8f8f8;
+  border-radius: 12px;
+  flex: 1 0 0;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
   display: flex;
 }
 
@@ -49,11 +66,6 @@
   line-height: 100%;
 }
 
-.Card-module__ckVvha__arrow {
-  width: 16px;
-  height: 16px;
-}
-
 
 /* [project]/src/app/page.module.css [app-client] (css) */
 .page-module___8aEwW__page {
@@ -68,9 +80,20 @@
   display: flex;
 }
 
+.page-module___8aEwW__filters {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 24px;
+  align-self: stretch;
+  align-items: flex-start;
+  margin: 0 32px;
+  display: flex;
+  overflow: hidden;
+}
+
 .page-module___8aEwW__website {
   grid-template-columns: 1fr;
-  gap: 32px 24px;
+  gap: 40px 24px;
   display: grid;
 }
 

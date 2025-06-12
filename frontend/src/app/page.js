@@ -9,22 +9,22 @@ import Dropdown from "@/components/Dropdown/Dropdown";
 
 export default function Home() {
   const [websites, setWebsites] = useState([]);
-  const [tags, setTags] = useState([]);
+  const [industries, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all unique tags
+  // Fetch all unique industries
   useEffect(() => {
     const fetchTags = async () => {
-      const { data, error } = await supabase.from("sites").select("tags");
+      const { data, error } = await supabase.from("sites").select("industries");
 
       if (error) {
-        console.error("Failed to fetch tags:", error);
+        console.error("Failed to fetch industries:", error);
         return;
       }
 
       const tagSet = new Set();
       data.forEach((site) => {
-        site.tags?.forEach((tag) => tagSet.add(tag));
+        site.industries?.forEach((tag) => tagSet.add(tag));
       });
 
       const dropdownOptions = Array.from(tagSet).map((tag) => ({
@@ -45,7 +45,7 @@ export default function Home() {
     let query = supabase.from("sites").select("*");
 
     if (tag !== "all") {
-      query = query.contains("tags", [tag]);
+      query = query.contains("industries", [tag]);
     }
 
     const { data, error } = await query;
@@ -68,7 +68,13 @@ export default function Home() {
       <main className={styles.main}>
         <Header />
 
-        <Dropdown options={tags} onSelect={handleSelect} />
+        <section className={styles.filters}>
+          <Dropdown  options={industries} onSelect={handleSelect} />
+          <div className={styles.line}></div>
+          <Dropdown options={industries} onSelect={handleSelect} />
+          <div className={styles.line}></div>
+          <Dropdown  options={industries} onSelect={handleSelect} />
+        </section>
 
         <section className={styles.website}>
           {loading ? (

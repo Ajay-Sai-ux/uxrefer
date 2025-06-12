@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./Dropdown.module.css";
+import Image from "next/image";
 
 const Dropdown = ({ label = "Select", options = [], onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,11 +17,19 @@ const Dropdown = ({ label = "Select", options = [], onSelect }) => {
     <div className={styles.dropdown}>
       <button onClick={() => setIsOpen(!isOpen)} className={styles.button}>
         {selected ? selected.label : label}
-        <span className={styles.arrow}>▼</span>
+
+        <Image
+        src="/chevron_down.svg"
+        alt="Dropdown Arrow"
+        width={24}
+        height={24}
+        className={styles.arrow}
+        />
+
       </button>
 
       {isOpen && (
-        <ul className={styles.menu}>
+        <div className={styles.menu}>
           {options.map((option) => (
             <li
               key={option.value}
@@ -30,7 +39,7 @@ const Dropdown = ({ label = "Select", options = [], onSelect }) => {
               {option.label}
             </li>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
