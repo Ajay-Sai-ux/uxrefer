@@ -89,7 +89,7 @@ const Home = () => {
               <Card
                 key={site.id}
                 title={site.name}
-                url={site.base_url}
+                url={site.baseUrl}
                 src={site.thumbnail}
               />
             ))
