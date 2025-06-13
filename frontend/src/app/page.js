@@ -7,7 +7,7 @@ import styles from "./page.module.css";
 import Header from "@/components/Header/Header";
 import Dropdown from "@/components/Dropdown/Dropdown";
 
-export default function Home() {
+const Home = () => {
   const [websites, setWebsites] = useState([]);
   const [industries, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ export default function Home() {
         value: tag,
       }));
 
-      setTags([{ label: "All", value: "all" }, ...dropdownOptions]);
+      setTags([{ label: "All Industry", value: "all" }, ...dropdownOptions]);
     };
 
     fetchTags();
@@ -69,11 +69,10 @@ export default function Home() {
         <Header />
 
         <section className={styles.filters}>
-          <Dropdown  options={industries} onSelect={handleSelect} />
-          <div className={styles.line}></div>
-          <Dropdown options={industries} onSelect={handleSelect} />
-          <div className={styles.line}></div>
-          <Dropdown  options={industries} onSelect={handleSelect} />
+          <Dropdown  options={industries} onSelect={handleSelect} label="Page Type"/>
+          <Dropdown  options={industries} onSelect={handleSelect} label="All Industry"/>
+          <Dropdown  options={industries} onSelect={handleSelect} label="Style"/>
+          <Dropdown  options={industries} onSelect={handleSelect} label="Domain"/>
         </section>
 
         <section className={styles.website}>
@@ -100,3 +99,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
