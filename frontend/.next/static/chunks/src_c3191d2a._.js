@@ -424,53 +424,74 @@ var _s = __turbopack_context__.k.signature();
 const Home = ()=>{
     _s();
     const [websites, setWebsites] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [industries, setTags] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [industries, setIndustries] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [stylesList, setStyles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [pageTypes, setPageTypes] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    // Fetch all unique industries
+    const [selectedIndustry, setSelectedIndustry] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("all");
+    const [selectedStyle, setSelectedStyle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("all");
+    const [selectedPageType, setSelectedPageType] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("all");
+    // Fetch all dropdown values
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Home.useEffect": ()=>{
-            const fetchTags = {
-                "Home.useEffect.fetchTags": async ()=>{
-                    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("sites").select("industries");
+            const fetchDropdownValues = {
+                "Home.useEffect.fetchDropdownValues": async ()=>{
+                    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("sites").select("industries, styles, pageType");
                     if (error) {
-                        console.error("Failed to fetch industries:", error);
+                        console.error("Failed to fetch dropdown values:", error);
                         return;
                     }
-                    const tagSet = new Set();
+                    const industrySet = new Set();
+                    const styleSet = new Set();
+                    const pageTypeSet = new Set();
                     data.forEach({
-                        "Home.useEffect.fetchTags": (site)=>{
+                        "Home.useEffect.fetchDropdownValues": (site)=>{
                             site.industries?.forEach({
-                                "Home.useEffect.fetchTags": (tag)=>tagSet.add(tag)
-                            }["Home.useEffect.fetchTags"]);
+                                "Home.useEffect.fetchDropdownValues": (item)=>industrySet.add(item)
+                            }["Home.useEffect.fetchDropdownValues"]);
+                            site.styles?.forEach({
+                                "Home.useEffect.fetchDropdownValues": (item)=>styleSet.add(item)
+                            }["Home.useEffect.fetchDropdownValues"]);
+                            site.pageType?.forEach({
+                                "Home.useEffect.fetchDropdownValues": (item)=>pageTypeSet.add(item)
+                            }["Home.useEffect.fetchDropdownValues"]);
                         }
-                    }["Home.useEffect.fetchTags"]);
-                    const dropdownOptions = Array.from(tagSet).map({
-                        "Home.useEffect.fetchTags.dropdownOptions": (tag)=>({
-                                label: tag,
-                                value: tag
-                            })
-                    }["Home.useEffect.fetchTags.dropdownOptions"]);
-                    setTags([
-                        {
-                            label: "All Industry",
-                            value: "all"
-                        },
-                        ...dropdownOptions
-                    ]);
+                    }["Home.useEffect.fetchDropdownValues"]);
+                    const format = {
+                        "Home.useEffect.fetchDropdownValues.format": (set, label)=>[
+                                {
+                                    label,
+                                    value: "all"
+                                },
+                                ...Array.from(set).map({
+                                    "Home.useEffect.fetchDropdownValues.format": (item)=>({
+                                            label: item,
+                                            value: item
+                                        })
+                                }["Home.useEffect.fetchDropdownValues.format"])
+                            ]
+                    }["Home.useEffect.fetchDropdownValues.format"];
+                    setIndustries(format(industrySet, "All Industries"));
+                    setStyles(format(styleSet, "All Styles"));
+                    setPageTypes(format(pageTypeSet, "All Page Types"));
                 }
-            }["Home.useEffect.fetchTags"];
-            fetchTags();
-            fetchSites(); // initial data load
+            }["Home.useEffect.fetchDropdownValues"];
+            fetchDropdownValues();
+            fetchSites(); // initial fetch
         }
     }["Home.useEffect"], []);
-    const fetchSites = async (tag = "all")=>{
+    const fetchSites = async (industry = selectedIndustry, style = selectedStyle, pageType = selectedPageType)=>{
         setLoading(true);
         let query = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabaseClient$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("sites").select("*");
-        if (tag !== "all") {
-            query = query.contains("industries", [
-                tag
-            ]);
-        }
+        if (industry !== "all") query = query.contains("industries", [
+            industry
+        ]);
+        if (style !== "all") query = query.contains("styles", [
+            style
+        ]);
+        if (pageType !== "all") query = query.contains("pageType", [
+            pageType
+        ]);
         const { data, error } = await query;
         if (error) {
             console.error("Error fetching sites:", error);
@@ -479,8 +500,17 @@ const Home = ()=>{
         }
         setLoading(false);
     };
-    const handleSelect = (option)=>{
-        fetchSites(option.value);
+    const handleIndustrySelect = (option)=>{
+        setSelectedIndustry(option.value);
+        fetchSites(option.value, selectedStyle, selectedPageType);
+    };
+    const handleStyleSelect = (option)=>{
+        setSelectedStyle(option.value);
+        fetchSites(selectedIndustry, option.value, selectedPageType);
+    };
+    const handlePageTypeSelect = (option)=>{
+        setSelectedPageType(option.value);
+        fetchSites(selectedIndustry, selectedStyle, option.value);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$page$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].page,
@@ -489,52 +519,43 @@ const Home = ()=>{
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Header$2f$Header$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/page.js",
-                    lineNumber: 69,
+                    lineNumber: 92,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                     className: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$page$2e$module$2e$css__$5b$app$2d$client$5d$__$28$css__module$29$__["default"].filters,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Dropdown$2f$Dropdown$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                            options: industries,
-                            onSelect: handleSelect,
+                            options: pageTypes,
+                            onSelect: handlePageTypeSelect,
                             label: "Page Type"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.js",
-                            lineNumber: 72,
+                            lineNumber: 95,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Dropdown$2f$Dropdown$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             options: industries,
-                            onSelect: handleSelect,
-                            label: "All Industry"
+                            onSelect: handleIndustrySelect,
+                            label: "Industry"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.js",
-                            lineNumber: 73,
+                            lineNumber: 96,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Dropdown$2f$Dropdown$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                            options: industries,
-                            onSelect: handleSelect,
+                            options: stylesList,
+                            onSelect: handleStyleSelect,
                             label: "Style"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.js",
-                            lineNumber: 74,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Dropdown$2f$Dropdown$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                            options: industries,
-                            onSelect: handleSelect,
-                            label: "Domain"
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/page.js",
-                            lineNumber: 75,
+                            lineNumber: 97,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/page.js",
-                    lineNumber: 71,
+                    lineNumber: 94,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -545,13 +566,13 @@ const Home = ()=>{
                         autoplay: true
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.js",
-                        lineNumber: 80,
+                        lineNumber: 102,
                         columnNumber: 13
                     }, this) : websites.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: "No matching websites found."
                     }, void 0, false, {
                         fileName: "[project]/src/app/page.js",
-                        lineNumber: 86,
+                        lineNumber: 108,
                         columnNumber: 13
                     }, this) : websites.map((site)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Card$2f$Card$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             title: site.name,
@@ -559,27 +580,27 @@ const Home = ()=>{
                             src: site.thumbnail
                         }, site.id, false, {
                             fileName: "[project]/src/app/page.js",
-                            lineNumber: 89,
+                            lineNumber: 111,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/app/page.js",
-                    lineNumber: 78,
+                    lineNumber: 100,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/page.js",
-            lineNumber: 68,
+            lineNumber: 91,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/page.js",
-        lineNumber: 67,
+        lineNumber: 90,
         columnNumber: 5
     }, this);
 };
-_s(Home, "3/PicHICqw4k4h7yzMZMptlbqGs=");
+_s(Home, "CgH7zRB2JMVxwexa6s9cd+e43nI=");
 _c = Home;
 const __TURBOPACK__default__export__ = Home;
 var _c;

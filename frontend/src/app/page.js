@@ -9,44 +9,56 @@ import Dropdown from "@/components/Dropdown/Dropdown";
 
 const Home = () => {
   const [websites, setWebsites] = useState([]);
-  const [industries, setTags] = useState([]);
+  const [industries, setIndustries] = useState([]);
+  const [stylesList, setStyles] = useState([]);
+  const [pageTypes, setPageTypes] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all unique industries
+  const [selectedIndustry, setSelectedIndustry] = useState("all");
+  const [selectedStyle, setSelectedStyle] = useState("all");
+  const [selectedPageType, setSelectedPageType] = useState("all");
+
+  // Fetch all dropdown values
   useEffect(() => {
-    const fetchTags = async () => {
-      const { data, error } = await supabase.from("sites").select("industries");
+    const fetchDropdownValues = async () => {
+      const { data, error } = await supabase.from("sites").select("industries, styles, pageType");
 
       if (error) {
-        console.error("Failed to fetch industries:", error);
+        console.error("Failed to fetch dropdown values:", error);
         return;
       }
 
-      const tagSet = new Set();
+      const industrySet = new Set();
+      const styleSet = new Set();
+      const pageTypeSet = new Set();
+
       data.forEach((site) => {
-        site.industries?.forEach((tag) => tagSet.add(tag));
+        site.industries?.forEach((item) => industrySet.add(item));
+        site.styles?.forEach((item) => styleSet.add(item));
+        site.pageType?.forEach((item) => pageTypeSet.add(item));
       });
 
-      const dropdownOptions = Array.from(tagSet).map((tag) => ({
-        label: tag,
-        value: tag,
-      }));
+      const format = (set, label) => [
+        { label, value: "all" },
+        ...Array.from(set).map((item) => ({ label: item, value: item })),
+      ];
 
-      setTags([{ label: "All Industry", value: "all" }, ...dropdownOptions]);
+      setIndustries(format(industrySet, "All Industries"));
+      setStyles(format(styleSet, "All Styles"));
+      setPageTypes(format(pageTypeSet, "All Page Types"));
     };
 
-    fetchTags();
-    fetchSites(); // initial data load
+    fetchDropdownValues();
+    fetchSites(); // initial fetch
   }, []);
 
-  const fetchSites = async (tag = "all") => {
+  const fetchSites = async (industry = selectedIndustry, style = selectedStyle, pageType = selectedPageType) => {
     setLoading(true);
-
     let query = supabase.from("sites").select("*");
 
-    if (tag !== "all") {
-      query = query.contains("industries", [tag]);
-    }
+    if (industry !== "all") query = query.contains("industries", [industry]);
+    if (style !== "all") query = query.contains("styles", [style]);
+    if (pageType !== "all") query = query.contains("pageType", [pageType]);
 
     const { data, error } = await query;
 
@@ -59,8 +71,19 @@ const Home = () => {
     setLoading(false);
   };
 
-  const handleSelect = (option) => {
-    fetchSites(option.value);
+  const handleIndustrySelect = (option) => {
+    setSelectedIndustry(option.value);
+    fetchSites(option.value, selectedStyle, selectedPageType);
+  };
+
+  const handleStyleSelect = (option) => {
+    setSelectedStyle(option.value);
+    fetchSites(selectedIndustry, option.value, selectedPageType);
+  };
+
+  const handlePageTypeSelect = (option) => {
+    setSelectedPageType(option.value);
+    fetchSites(selectedIndustry, selectedStyle, option.value);
   };
 
   return (
@@ -69,10 +92,9 @@ const Home = () => {
         <Header />
 
         <section className={styles.filters}>
-          <Dropdown  options={industries} onSelect={handleSelect} label="Page Type"/>
-          <Dropdown  options={industries} onSelect={handleSelect} label="All Industry"/>
-          <Dropdown  options={industries} onSelect={handleSelect} label="Style"/>
-          <Dropdown  options={industries} onSelect={handleSelect} label="Domain"/>
+          <Dropdown options={pageTypes} onSelect={handlePageTypeSelect} label="Page Type" />
+          <Dropdown options={industries} onSelect={handleIndustrySelect} label="Industry" />
+          <Dropdown options={stylesList} onSelect={handleStyleSelect} label="Style" />
         </section>
 
         <section className={styles.website}>
@@ -98,6 +120,6 @@ const Home = () => {
       </main>
     </div>
   );
-}
+};
 
 export default Home;
