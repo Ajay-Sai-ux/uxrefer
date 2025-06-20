@@ -14,7 +14,7 @@ const Home = () => {
     const fetchSites = async () => {
       setLoading(true);
       try {
-        const res = await fetch("https://uxrefer.onrender.com/");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`);
         if (!res.ok) throw new Error("Failed to fetch websites");
         const result = await res.json();
 

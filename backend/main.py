@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Or ["http://localhost:3000"] for more security
+    allow_origins=["https://api.uxrefer.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

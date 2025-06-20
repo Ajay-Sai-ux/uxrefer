@@ -280,7 +280,7 @@ const Home = ()=>{
         const fetchSites = async ()=>{
             setLoading(true);
             try {
-                const res = await fetch("https://uxrefer.onrender.com/");
+                const res = await fetch(`${("TURBOPACK compile-time value", "https://api.uxrefer.com")}/`);
                 if (!res.ok) throw new Error("Failed to fetch websites");
                 const result = await res.json();
                 console.log("✅ API result:", result);
