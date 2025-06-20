@@ -8,7 +8,12 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://api.uxrefer.com"],
+    allow_origins=[
+        "https://uxrefer.com",
+        "https://www.uxrefer.com",
+        "https://api.uxrefer.com",
+        "https://your-vercel-domain.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
