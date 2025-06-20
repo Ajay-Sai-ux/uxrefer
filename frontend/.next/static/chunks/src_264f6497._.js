@@ -296,7 +296,7 @@ const Home = ()=>{
                 "Home.useEffect.fetchSites": async ()=>{
                     setLoading(true);
                     try {
-                        const res = await fetch("http://localhost:8000");
+                        const res = await fetch("https://uxrefer.onrender.com/");
                         if (!res.ok) throw new Error("Failed to fetch websites");
                         const result = await res.json();
                         console.log("✅ API result:", result);
